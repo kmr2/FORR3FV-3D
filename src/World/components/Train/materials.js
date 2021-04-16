@@ -1,9 +1,19 @@
-import { MeshStandardMaterial } from 'https://unpkg.com/three@0.117.0/build/three.module.js';
+import { MeshStandardMaterial, TextureLoader, } from 'https://unpkg.com/three@0.117.0/build/three.module.js';
 
 function createMaterials() {
+
+  const textureloader = new TextureLoader();
+
+  const snow = textureloader.load(
+    '/assets/textures/Snow_001_DISP.png',
+  );
+
+  const stoneTexture = textureloader.load (
+    '/assets/textures/Asphalt_001_DISP.png',
+  )
+
   const body = new MeshStandardMaterial({
-    color: 'white',
-    flatShading: true,
+    map: snow,
   });
 
   const hat = new MeshStandardMaterial({
@@ -13,12 +23,11 @@ function createMaterials() {
 
   const nose = new MeshStandardMaterial({
       color: 'orange',
-      flatShading: true,
+      flatShading: false,
   });
 
   const stone = new MeshStandardMaterial({
-      color: 'gray',
-      flatShading: true,
+      map: stoneTexture,
   })
 
   return { body, hat, nose, stone };
